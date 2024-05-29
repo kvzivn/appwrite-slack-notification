@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export default async function (req, res) {
-  context.log("Request received:", req)
+  console.log("Request received:", req)
   let payload
 
   try {
@@ -14,13 +14,13 @@ export default async function (req, res) {
       payload = req.payload ? JSON.parse(req.payload) : {}
     }
 
-    context.log("Parsed payload:", payload)
+    console.log("Parsed payload:", payload)
 
     // Data extraction example; modify this according to actual payload structure
     const document = payload.events ? payload.events[0] : null
     const { $id } = document || {}
 
-    context.log("Extracted id:", $id)
+    console.log("Extracted id:", $id)
 
     // Validate payload structure
     if ($id) {
@@ -39,7 +39,7 @@ export default async function (req, res) {
       message: "Notification sent to Slack!",
     })
   } catch (error) {
-    context.error("Error occurred:", error)
+    console.error("Error occurred:", error)
 
     // Handle errors and send a failure response
     res.json({
