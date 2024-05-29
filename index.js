@@ -1,9 +1,11 @@
-const axios = require("axios")
+import axios from "axios"
 
-module.exports = async (req, res) => {
-  const { email } = JSON.parse(req.payload)
+export default async (req, res) => {
+  const { userId, email } = JSON.parse(req.payload)
+
   const slackWebhookUrl = process.env.SLACK_WEBHOOK_URL
-  const message = `A new user has signed up:\n- Email: ${email}`
+
+  const message = `A new user has signed up:\n- User ID: ${userId}\n- Email: ${email}`
 
   try {
     await axios.post(slackWebhookUrl, {
