@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export default async ({ req, res, error }) => {
-  const { email, firstName, lastName } = JSON.parse(req.body)
+  const { email, firstName, lastName } = req.body
   const slackWebhookUrl = process.env.SLACK_WEBHOOK_URL
   const message = `Someone applied to join the network!\n- Name: ${firstName} ${lastName}\n- Email: ${email}`
 
